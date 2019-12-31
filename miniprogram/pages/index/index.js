@@ -1,11 +1,43 @@
-// miniprogram/pages/index/index.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    floorList: ['1楼', '2楼', '3楼', '4楼', '5楼'],
+    floorIndex: 0,
+    currentDate: '2019-12-31',
+    btnLoading: false,
+    btnDisabled: false
+  },
 
+  handleFloorChange: () => {
+    console.log('handleFloorChange')
+  },
+
+  handleDateChange: () => {
+    console.log('handleDateChange')
+  },
+
+  handleSubmit: function () {
+    console.log('handleSubmit', this)
+    this.setData({
+      btnLoading: true,
+      // btnDisabled: true
+    })
+    wx.cloud.callFunction({
+      name: 'recordApi',
+      data: {
+        action: 'add',
+        date: '20200101'
+      }
+    }).then((res) => {
+      console.log('登记成功=', res)
+    }).finally(() => {
+      this.setData({
+        btnLoading: false,
+        // btnDisabled: false
+      })
+    })
   },
 
   /**
