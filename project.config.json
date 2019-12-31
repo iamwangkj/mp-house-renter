@@ -37,7 +37,14 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/record/index",
+					"pathName": "pages/record/index",
+					"scene": null
+				}
+			]
 		}
 	}
 }
