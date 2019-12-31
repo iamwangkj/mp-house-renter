@@ -10,10 +10,11 @@
 		"enhance": true
 	},
 	"appid": "wx23516bd221490d76",
-	"projectname": "template-mini-program",
+	"projectname": "house-rent-management-mini-program",
 	"libVersion": "2.8.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
