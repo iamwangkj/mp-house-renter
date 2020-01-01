@@ -4,10 +4,23 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"enhance": true
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"appid": "wx23516bd221490d76",
 	"projectname": "house-rent-management-mini-program",
@@ -42,6 +55,13 @@
 					"id": -1,
 					"name": "pages/record/index",
 					"pathName": "pages/record/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/record-detail/index",
+					"pathName": "pages/record-detail/index",
 					"scene": null
 				}
 			]
