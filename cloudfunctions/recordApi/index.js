@@ -4,22 +4,50 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 const db = cloud.database()
+const collection = 'records'
 
-function add(data) {
-  const { date } = data
-  return db.collection('records').add({
-    data: {
-      // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
-      date,
-      // 为待办事项添加一个地理位置（113°E，23°N）
-      // location: new db.Geo.Point(113, 23),
-      // done: false
+// 云函数入口函数
+exports.main = async (data, context) => {
+  const { action, payload } = data
+  switch (action) {
+    case 'add': {
+      return add(payload)
     }
+    case 'get': {
+      return get(payload)
+    }
+    case 'put': {
+      return put(payload)
+    }
+    case 'remove': {
+      return remove(payload)
+    }
+    default: {
+      return
+    }
+  }
+}
+
+function add(payload) {
+  return db.collection(collection).add({
+    data: payload
   })
 }
 
-function get() {
-
+function get(payload) {
+  return db.collection(collection)
+    // .where({
+    //   price: _.gt(10)
+    // })
+    // .field({
+    //   recordDate: true,
+    //   waterReading: true,
+    //   electricityReading: true
+    // })
+    .orderBy('recordDate', 'desc')
+    // .skip(1)
+    // .limit(10)
+    .get()
 }
 
 function put() {
@@ -28,27 +56,4 @@ function put() {
 
 function remove() {
 
-}
-
-// 云函数入口函数
-exports.main = async (data, context) => {
-  console.log('云函数入口函数data=', data)
-  const { action } = data
-  switch (action) {
-    case 'add': {
-      return add(data)
-    }
-    case 'get': {
-      return get(data)
-    }
-    case 'put': {
-      return put(data)
-    }
-    case 'remove': {
-      return remove(data)
-    }
-    default: {
-      return
-    }
-  }
 }
