@@ -1,30 +1,59 @@
-// miniprogram/pages/record/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    listData: [
-      { "code": "01", "text": "text1", "type": "type1" },
-      { "code": "02", "text": "text2", "type": "type2" },
-      { "code": "03", "text": "text3", "type": "type3" },
-      { "code": "04", "text": "text4", "type": "type4" },
-      { "code": "05", "text": "text5", "type": "type5" },
-      { "code": "06", "text": "text6", "type": "type6" },
-      { "code": "07", "text": "text7", "type": "type7" }
-    ]
+    listData: [],
+    floorList: ['1楼', '2楼', '3楼', '4楼', '5楼'],
+    floorIndex: 0,
+    floorRecordList: []
+  },
+
+  goToRecordDetail: function (e) {
+    const { itemData, itemIndex } = e.currentTarget.dataset
+    const { floorRecordList } = this.data
+    const lastData = itemIndex === floorRecordList.length - 1 ? null : floorRecordList[itemIndex + 1]
+    wx.navigateTo({
+      url: `/pages/record-detail/index?data=${JSON.stringify(itemData)}&lastData=${JSON.stringify(lastData)}`
+    })
+  },
+
+  handleFloorChange: function (e) {
+    const { value: index } = e.detail
+    const { listData, floorList } = this.data
+    this.setData({
+      floorIndex: index,
+      floorRecordList: this.filterDataByFloorName(listData, floorList[index])
+    })
+  },
+
+  filterDataByFloorName: function (allList, floorName) {
+    return allList.filter(item => item.floorName === floorName)
   },
 
   getData: function () {
-    console.log('getData')
+    console.log('获取全部记录数据')
+    wx.cloud.callFunction({
+      name: 'recordApi',
+      data: {
+        action: 'get',
+        payload: {}
+      }
+    }).then((res) => {
+      const { data } = res.result
+      const { floorList, floorIndex } = this.data
+      this.setData({
+        listData: data,
+        floorRecordList: this.filterDataByFloorName(data, floorList[floorIndex])
+      })
+    }).catch(console.error)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
   },
 
   /**
@@ -38,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getData()
   },
 
   /**
