@@ -1,1 +1,5 @@
-@import './libs/weui'
+@import './libs/weui';
+
+.page {
+  padding-bottom: 40rpx;
+}
