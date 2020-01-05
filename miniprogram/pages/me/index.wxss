@@ -1,1 +1,4 @@
-/* miniprogram/pages/me/index.wxss */
+.user-avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
