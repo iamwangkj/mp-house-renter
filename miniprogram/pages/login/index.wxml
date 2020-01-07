@@ -1,0 +1,5 @@
+<view class="page">
+  <input type="number" value="{{username}}" bindinput="handleUsernameInput" />
+  <input type="text" password value="{{password}}" bindinput="handlePasswordInput" />
+  <button type="primary" bindtap="handleLogin">login</button>
+</view>

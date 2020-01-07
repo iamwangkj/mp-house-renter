@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/index/index",
     "pages/record/index",
     "pages/me/index",
-    "pages/record-detail/index"
+    "pages/record-detail/index",
+    "pages/test/index"
   ],
   "tabBar": {
     "color": "#7A7E83",
