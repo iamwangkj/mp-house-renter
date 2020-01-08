@@ -1,8 +1,5 @@
+const appInstance = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     listData: [],
     floorList: ['1楼', '2楼', '3楼', '4楼', '5楼'],
@@ -38,10 +35,13 @@ Page({
       name: 'recordApi',
       data: {
         action: 'get',
-        payload: {}
+        payload: {
+          userId: appInstance.globalData.userId
+        }
       }
-    }).then((res) => {
-      const { data } = res.result
+    }).then(({ result }) => {
+      console.log('res', result)
+      const { data } = result
       const { floorList, floorIndex } = this.data
       this.setData({
         listData: data,

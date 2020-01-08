@@ -1,5 +1,5 @@
 import moment from 'moment'
-
+const appInstance = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -78,6 +78,7 @@ Page({
       data: {
         action: 'add',
         payload: {
+          userId: appInstance.globalData.userId,
           floorName,
           recordDate,
           waterReading,
@@ -104,13 +105,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'login'
-    }).then((res) => {
-      console.log(res)
-      const { openid } = res.result
-    })
-
 
   },
 
