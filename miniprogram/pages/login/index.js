@@ -1,12 +1,13 @@
 // miniprogram/pages/login/index.js
+const appInstance = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username: '',
-    password: ''
+    username: '13662662795',
+    password: '1'
   },
 
   handleUsernameInput: function (e) {
@@ -23,12 +24,32 @@ Page({
 
   handleLogin: function () {
     console.log('e', this.data)
-    wx.switchTab({
-      url: '/pages/index/index',
-      fail: (err) => {
-        console.log('err', err)
+    const {
+      username,
+      password
+    } = this.data
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {
+        username,
+        password
+      }
+    }).then(({ result }) => {
+      const { code } = result
+      if (code === 200) {
+        appInstance.globalData.userId = username
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+      }
+      else {
+        wx.showToast({
+          title: 'failed',
+          icon: 'loading'
+        })
       }
     })
+
   },
 
   /**
