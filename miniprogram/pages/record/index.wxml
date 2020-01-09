@@ -22,18 +22,19 @@
     </view>
     <view wx:else>
       <block wx:for="{{floorRecordList}}" wx:key="{{item._id}}">
-        <view class="tr bg-g" wx:if="{{index % 2 === 0}}" data-item-data="{{item}}" data-item-index="{{index}}" bindtap="goToRecordDetail">
+        <view class="tr bg-white" data-item-data="{{item}}" data-item-index="{{index}}" bindtap="goToRecordDetail">
           <view class="td">{{item.floorName}}</view>
           <view class="td">{{item.recordDate}}</view>
           <view class="td">{{item.waterReading}}</view>
           <view class="td">{{item.electricityReading}}</view>
         </view>
-        <view class="tr bg-white" wx:else data-item-data="{{item}}" data-item-index="{{index}}" bindtap="goToRecordDetail">
+        <!-- wx:if="{{index % 2 === 0}}" -->
+        <!-- <view class="tr bg-g" wx:else data-item-data="{{item}}" data-item-index="{{index}}" bindtap="goToRecordDetail">
           <view class="td">{{item.floorName}}</view>
           <view class="td">{{item.recordDate}}</view>
           <view class="td">{{item.waterReading}}</view>
           <view class="td">{{item.electricityReading}}</view>
-        </view>
+        </view> -->
       </block>
     </view>
   </view>
