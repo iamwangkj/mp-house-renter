@@ -3,7 +3,7 @@
 }
 
 .btn-logout-wrapper {
-  margin-top: 50rpx;
+  margin-top: 100rpx;
 }
 
 .btn-logout-wrapper > button {

@@ -32,9 +32,9 @@
       </view>
     </view>
     <!-- 提交 -->
-    <view class="weui-cell ">
-      <button type="primary" loading="{{btnLoading}}" bindtap="handleModify">修改信息</button>
-    </view>
+    <!-- <view class="weui-cell ">
+      <button type="primary" loading="{{btnLoading}}" bindtap="modifyUserInfo">修改信息</button>
+    </view> -->
   </view>
   <view class="btn-logout-wrapper">
     <button bindtap="logout">退出登录</button>

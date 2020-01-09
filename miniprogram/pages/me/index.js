@@ -27,7 +27,7 @@ Page({
     })
   },
 
-  handleModify: function () {
+  modifyUserInfo: function () {
 
   },
 

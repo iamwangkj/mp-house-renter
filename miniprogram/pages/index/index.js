@@ -66,13 +66,24 @@ Page({
   },
 
   handleSubmit: function () {
-    console.log('handleSubmit', this.data)
+    const { floorName, recordDate, waterReading, electricityReading, rentPrice,
+      managementPrice, waterPrice, electricityPrice } = this.data
+    if (!waterReading) {
+      wx.showToast({
+        title: '请输入水表读数',
+        icon: 'none'
+      })
+      return
+    } else if (!electricityReading) {
+      wx.showToast({
+        title: '请输入电表读数',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       btnLoading: true
     })
-    const { floorName, recordDate, waterReading, electricityReading, rentPrice,
-      managementPrice, waterPrice, electricityPrice } = this.data
-
     wx.cloud.callFunction({
       name: 'recordApi',
       data: {
