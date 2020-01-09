@@ -5,7 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
+    phone: '138xxxxxxxx',
+    name: 'XXX',
+    birthday: '2019-12-24'
+  },
 
+  handlePhoneInput: function (e) {
+    this.setData({
+      phone: e.detail.value
+    })
+  },
+  handleNameInput: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  handleBirthdayChange: function (e) {
+    this.setData({
+      birthday: e.detail.value
+    })
+  },
+
+  handleModify: function () {
+
+  },
+
+  logout: function () {
+    wx.reLaunch({
+      url: '/pages/login/index'
+    })
   },
 
   /**

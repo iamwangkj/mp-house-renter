@@ -1,4 +1,12 @@
 .user-avatar {
-  width: 100rpx;
-  height: 100rpx;
+  padding: 50rpx 0 100rpx 0;
+}
+
+.btn-logout-wrapper {
+  margin-top: 50rpx;
+}
+
+.btn-logout-wrapper > button {
+  background-color: #e94f4f;
+  color: #fff;
 }
