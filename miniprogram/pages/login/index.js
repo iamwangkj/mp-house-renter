@@ -7,7 +7,8 @@ Page({
    */
   data: {
     username: '13662662795',
-    password: '1'
+    password: '11',
+    btnLoading: false
   },
 
   handleUsernameInput: function (e) {
@@ -23,7 +24,10 @@ Page({
   },
 
   handleLogin: function () {
-    console.log('e', this.data)
+    console.log('handleLogin', this.data)
+    this.setData({
+      btnLoading: true
+    })
     const {
       username,
       password
@@ -44,10 +48,14 @@ Page({
       }
       else {
         wx.showToast({
-          title: 'failed',
-          icon: 'loading'
+          title: '账号或密码错误，请重试',
+          icon: 'none'
         })
       }
+    }).finally(() => {
+      this.setData({
+        btnLoading: false
+      })
     })
 
   },
