@@ -11,10 +11,10 @@ Page({
     recordDate: moment().format('YYYY-MM-DD'),
     waterReading: '',
     electricityReading: '',
-    rentPrice: 800,
+    rentPrice: 900,
     managementPrice: 50,
     waterPrice: 7,
-    electricityPrice: 1.5,
+    electricityPrice: 1.3,
 
     btnLoading: false,
     btnDisabled: false
@@ -22,10 +22,11 @@ Page({
 
   handleFloorChange: function (e) {
     const { value: index } = e.detail
+    const rentPrice = index === 0 ? this.data.rentPrice : this.data.rentPrice+50
     this.setData({
       floorIndex: index,
       floorName: this.data.floorList[index],
-      rentPrice: index === 0 ? 800 : 850
+      rentPrice
     })
   },
 

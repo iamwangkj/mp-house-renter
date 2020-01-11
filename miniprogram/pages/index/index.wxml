@@ -64,7 +64,7 @@
         <view class="weui-label">水费单价</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入水费单价" value="{{waterPrice}}" disabled="{{true}}" />
+        <input class="weui-input" placeholder="请输入水费单价" value="{{waterPrice}}" />
       </view>
       <view class="weui-cell__ft">
         <view class="weui-vcode-btn">元/吨</view>
@@ -76,7 +76,7 @@
         <view class="weui-label">电费单价</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入电费单价" value="{{electricityPrice}}" disabled="{{true}}" />
+        <input class="weui-input" placeholder="请输入电费单价" value="{{electricityPrice}}" />
       </view>
       <view class="weui-cell__ft">
         <view class="weui-vcode-btn">元/度</view>
