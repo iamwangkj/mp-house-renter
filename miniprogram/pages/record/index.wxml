@@ -12,8 +12,8 @@
   </view>
   <view class="table">
     <view class="tr">
-      <view class="th">楼层</view>
       <view class="th">日期</view>
+      <view class="th">租金</view>
       <view class="th">水表读数</view>
       <view class="th ">电表读数</view>
     </view>
@@ -23,8 +23,8 @@
     <view wx:else>
       <block wx:for="{{floorRecordList}}" wx:key="{{item._id}}">
         <view class="tr bg-white" data-item-data="{{item}}" data-item-index="{{index}}" bindtap="goToRecordDetail">
-          <view class="td">{{item.floorName}}</view>
           <view class="td">{{item.recordDate}}</view>
+          <view class="td">{{item.rentPrice}}</view>
           <view class="td">{{item.waterReading}}</view>
           <view class="td">{{item.electricityReading}}</view>
         </view>

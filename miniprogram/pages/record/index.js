@@ -30,7 +30,6 @@ Page({
   },
 
   getData: function () {
-    console.log('获取全部记录数据')
     wx.cloud.callFunction({
       name: 'recordApi',
       data: {
@@ -38,16 +37,18 @@ Page({
         payload: {
           userId: appInstance.globalData.userId
         }
-      }
-    }).then(({ result }) => {
-      console.log('res', result)
-      const { data } = result
-      const { floorList, floorIndex } = this.data
-      this.setData({
-        listData: data,
-        floorRecordList: this.filterDataByFloorName(data, floorList[floorIndex])
-      })
-    }).catch(console.error)
+      },
+      success: ({ result }) => {
+        console.log('获取全部记录数据', result)
+        const { data } = result
+        const { floorList, floorIndex } = this.data
+        this.setData({
+          listData: data,
+          floorRecordList: this.filterDataByFloorName(data, floorList[floorIndex])
+        })
+      },
+      fail: console.error
+    })
   },
 
   /**

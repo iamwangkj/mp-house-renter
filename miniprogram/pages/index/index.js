@@ -21,8 +21,17 @@ Page({
   },
 
   handleFloorChange: function (e) {
-    const { value: index } = e.detail
-    const rentPrice = index === 0 ? this.data.rentPrice : this.data.rentPrice+50
+    const {
+      value: index
+    } = e.detail
+    let rentPrice = 1000
+    switch(parseInt(index, 10)){
+      case 0: rentPrice = 900;break;
+      case 1: rentPrice = 1000;break;
+      case 2: rentPrice = 1000;break;
+      case 3: rentPrice = 1000;break;
+      case 4: rentPrice = 950;break;
+    }
     this.setData({
       floorIndex: index,
       floorName: this.data.floorList[index],
@@ -31,7 +40,9 @@ Page({
   },
 
   handleDateChange: function (e) {
-    const { value } = e.detail
+    const {
+      value
+    } = e.detail
     console.log('handleDateChange', value)
     this.setData({
       recordDate: value
@@ -39,36 +50,52 @@ Page({
   },
 
   handleWaterReadingInput: function (e) {
-    const { value } = e.detail
+    const {
+      value
+    } = e.detail
     this.setData({
       waterReading: parseInt(value, 10)
     })
   },
 
   handleElectricityReadingInput: function (e) {
-    const { value } = e.detail
+    const {
+      value
+    } = e.detail
     this.setData({
       electricityReading: parseInt(value, 10)
     })
   },
 
   handleRentPriceChange: function (e) {
-    const { value } = e.detail
+    const {
+      value
+    } = e.detail
     this.setData({
       rentPrice: parseInt(value, 10)
     })
   },
 
   handleManagementPriceChange: function (e) {
-    const { value } = e.detail
+    const {
+      value
+    } = e.detail
     this.setData({
       managementPrice: parseInt(value, 10)
     })
   },
 
   handleSubmit: function () {
-    const { floorName, recordDate, waterReading, electricityReading, rentPrice,
-      managementPrice, waterPrice, electricityPrice } = this.data
+    const {
+      floorName,
+      recordDate,
+      waterReading,
+      electricityReading,
+      rentPrice,
+      managementPrice,
+      waterPrice,
+      electricityPrice
+    } = this.data
     if (!waterReading) {
       wx.showToast({
         title: '请输入水表读数',
@@ -85,31 +112,37 @@ Page({
     this.setData({
       btnLoading: true
     })
+    const payload = {
+      userId: appInstance.globalData.userId,
+      floorName,
+      recordDate,
+      waterReading,
+      electricityReading,
+      rentPrice,
+      managementPrice,
+      waterPrice,
+      electricityPrice
+    }
+    console.log('提交的数据', payload)
     wx.cloud.callFunction({
       name: 'recordApi',
       data: {
         action: 'add',
-        payload: {
-          userId: appInstance.globalData.userId,
-          floorName,
-          recordDate,
-          waterReading,
-          electricityReading,
-          rentPrice,
-          managementPrice,
-          waterPrice,
-          electricityPrice
-        }
+        payload
+      },
+      success() {
+        wx.showToast({
+          title: '提交成功！',
+          mask: true
+        })
+      },
+      complete: () => {
+        this.setData({
+          btnLoading: false,
+          waterReading: '',
+          electricityReading: ''
+        })
       }
-    }).then((res) => {
-      wx.showToast({
-        title: '提交成功！',
-        mask: true
-      })
-    }).finally(() => {
-      this.setData({
-        btnLoading: false
-      })
     })
   },
 

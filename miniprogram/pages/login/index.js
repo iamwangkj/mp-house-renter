@@ -7,7 +7,7 @@ Page({
    */
   data: {
     username: '13662662795',
-    password: '11',
+    password: '1',
     btnLoading: false
   },
 
@@ -24,40 +24,39 @@ Page({
   },
 
   handleLogin: function () {
-    console.log('handleLogin', this.data)
+    console.log('登录的信息', this.data)
     this.setData({
       btnLoading: true
     })
-    const {
-      username,
-      password
-    } = this.data
+    const { username, password } = this.data
     wx.cloud.callFunction({
       name: 'login',
       data: {
         username,
         password
-      }
-    }).then(({ result }) => {
-      const { code } = result
-      if (code === 200) {
-        appInstance.globalData.userId = username
-        wx.switchTab({
-          url: '/pages/index/index'
+      },
+      success: ({result}) => {
+        console.log(result)
+        const { code } = result
+        if (code === 200) {
+          appInstance.globalData.userId = username
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
+        else {
+          wx.showToast({
+            title: '账号或密码错误，请重试',
+            icon: 'none'
+          })
+        }
+      },
+      complete: () => {
+        this.setData({
+          btnLoading: false
         })
       }
-      else {
-        wx.showToast({
-          title: '账号或密码错误，请重试',
-          icon: 'none'
-        })
-      }
-    }).finally(() => {
-      this.setData({
-        btnLoading: false
-      })
     })
-
   },
 
   /**

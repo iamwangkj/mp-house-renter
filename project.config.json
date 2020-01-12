@@ -11,8 +11,6 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -20,7 +18,10 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"bundle": true
 	},
 	"appid": "wx23516bd221490d76",
 	"projectname": "house-rent-management-mini-program",
